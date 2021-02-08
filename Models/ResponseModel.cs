@@ -163,7 +163,7 @@ namespace BajajWebApi.Models
     {
         public int id { get; set; }
         public int rev { get; set; }
-        public Fields fields { get; set; }
+        public Dictionary<string,object> fields { get; set; }
         public Links _links { get; set; }
         public string url { get; set; }
     }
@@ -211,7 +211,7 @@ namespace BajajWebApi.Models
     public class WorkItemReponseModel
     {
         public int count { get; set; }
-        public List<Values> value { get; set; }
+        public List<WIDetail> value { get; set; }
     }
 
 

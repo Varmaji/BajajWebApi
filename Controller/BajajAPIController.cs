@@ -146,7 +146,7 @@ namespace BajajWebApi.Controller
                         string defaultUrl = "https://dev.azure.com/" + org + "/_apis/wit/workitems?ids=";
                         url = defaultUrl;
                         WorkItemReponseModel workItemReponse = new WorkItemReponseModel();
-                        workItemReponse.value = new List<Values>();
+                        workItemReponse.value = new List<WIDetail>();
                         string endUrl = "&$expand=all&api-version=5.1";
 
                         //QueryValue testData = JsonConvert.DeserializeObject<QueryValue>(wiqlResponse); 
@@ -178,17 +178,20 @@ namespace BajajWebApi.Controller
                         workItemReponse.count += lastBatchResponse.count;
                         responseModel.Request_ID = requestModel.Request_ID;
                         responseModel.Status = "Success";
-                        List<Values> values = new List<Values>();
                         foreach(var items in lastBatchResponse.value)
                         workItemReponse.value.Add(items);
                         Double summation = 0;
                         for (int i = 0; i < lastBatchResponse.value.Count; i++)
                         {
-                            summation += lastBatchResponse.value[i].fields.MicrosoftVSTSSchedulingEffort;
+                            summation += double.Parse(lastBatchResponse.value[i].fields["Microsoft.VSTS.Scheduling.Effort"].ToString());
                         }
                         responseModel.Details = new Detail { Sum = summation };
 
+                        responseModel.WI_Details = new List<WIDetail>();
 
+                        responseModel.WI_Details.AddRange(workItemReponse.value);
+
+                        return Json(responseModel);
                     }
 
                 }
