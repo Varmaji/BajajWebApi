@@ -11,7 +11,7 @@ namespace BajajWebApi.Models
     {
         public int? Count { get; set; }
         public Double? Sum { get; set; }
-        public Double? Avearage { get; set; }
+        public Double? Average { get; set; }
         public Double? Max { get; set; }
         public Double? Min { get; set; }
     }
@@ -198,15 +198,6 @@ namespace BajajWebApi.Models
         public string href { get; set; }
     }
 
-
-    public class Values
-    {
-        public int id { get; set; }
-        public int rev { get; set; }
-        public Fields fields { get; set; }
-        public Links _links { get; set; }
-        public string url { get; set; }
-    }
 
     public class WorkItemReponseModel
     {
